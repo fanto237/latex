@@ -1,58 +1,112 @@
-\begin{titlepage}
-	\pagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                 %                    
+%                    Definition Deckblatt                         %
+%                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% true für Bachelorarbeit / false für Hausarbeit
+\newbool{bachelorarbeit}
+\setbool{bachelorarbeit}{false}
+
+% Setze Fachbereich
+\newcommand{\department}{Fachbereich II \\ Management und Informationssysteme}
+
+% Setze Studiengang
+\newcommand{\studyprogram}{Wirtschaftsinformatik B.Sc.}
+
+% Setze Modulname (bachelorarbeit muss false sein)
+\newcommand{\modulname}{Tolles Modul}
+
+% Setze Dozent:in (bachelorarbeit muss false sein)
+\newcommand{\auditor}{\textbf{Dozent:in:} \> Prof. Dr. Maxi Muster}
+
+% Setze Gutachter:innen (bachelorarbeit muss true sein)
+\newcommand{\firstauditor}{\textbf{Erstgutachter:} \> Prof. Dr. Maxi Mustermann}
+\newcommand{\secondauditor}{\textbf{Zweitgutachterin:} \> Prof. Dr. Maxi Musterfrau}
+
+% Setze Titel und Untertitel der Abreit 
+\newcommand{\thetitle}{Titel}
+\newcommand{\thesubtitle}{Untertitel}
+
+% Setze Autor:in und MatNr.
+\newcommand{\theauthor}{Robin Mustermensch}
+\newcommand{\matriculationnumber}{00000}
+
+% Abstand zwischen Name und MatNr. (siehe Deckblatt)
+\newcommand{\myspace}{1.0cm}
+
+% Muss in src/basic_structure/deckblatt.tex einkommentiert werden! 
+
+\newcommand{\secondauthor}{\> Maxi Mustermensch \> MatNr. 00000\\}
+\newcommand{\thirdauthor}{\> Maxi Mustermensch \> MatNr. 00000\\}
+\newcommand{\fourthauthor}{\> Maxi Mustermensch \> MatNr. 00000\\}
+\newcommand{\fifthauthor}{\> Maxi Mustermensch \> MatNr. 00000\\}
+
+% PDF Metadaten
+%\hypersetup{pdfinfo={
+%Title={\thetitle},
+%Author={\theauthor}
+%}}
+
+\hypersetup{pdfinfo={
+			Title={\thetitle},
+			Author={\theauthor}
+		}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           Deckblatt           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setmainfont{TeX Gyre Adventor}
+\thispagestyle{empty}
+\begin{figure}[h!]
 	\centering
+	\includegraphics[width=0.6\textwidth]{./images/hs-logo.png}
+\end{figure}
+\begin{center}
+	\large{\textbf{\department}}\\
+	\large{\textbf{\studyprogram}}\\
+	\vspace{1cm}
+	\ifbool{bachelorarbeit}{
+		\LARGE{\textbf{Bachelorarbeit}}\\
+		\large{zur Erlangung des akademischen Grades \\ Bachelor of Science}\\
+	}
+	{
+		\large{\textbf{Modul\\ \modulname}}\\
+	}
+	\vspace*{\fill}
+	\line(1,0){450}\\
+	\doublespacing
+	\textbf{\Large{\thetitle}}\\
+	\textbf{\large{\thesubtitle}}\\
+	\line(1,0){450}\\
+\end{center}
+\vspace*{\fill}
+\onehalfspacing
+\small{
+	\begin{flushleft}
+		\begin{tabbing}
+			\textbf{Vorgelegt von:} \hspace*{0.8cm}\= \theauthor \hspace*{\myspace}\= MatNr. \matriculationnumber \\
 
-	\vspace*{0.5cm}
-	\begin{otherlanguage*}{ngerman}
-		\begin{sffamily}
-			{
-				\includegraphics[width=7cm, height=2cm]{images/hs-logo.png}\\[5mm]
-				\Large
-				% Hochschule Bremerhaven\\[1em]
-				Fakultät II -- Management und Informationssysteme\\[0.1em]
-				\textbf{Informatik}\\[0.5em]
-				Modul Infrastrucktur
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%                                            %
+			%  Hier weitere Autor:innen einkommentieren  %
+			%   Müssen hauptdatei.tex definiert sein     %
+			%	                                         %
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			%\secondauthor
+			%\thirdauthor
+			%\fourthauthor
+			%\fifthauthor
+
+			\textbf{Vorgelegt am:} \> \today\\
+			\ifbool{bachelorarbeit}{
+				\firstauditor\\
+				\secondauditor\\
 			}
-		\end{sffamily}
-	\end{otherlanguage*}
-
-	\vspace*{2cm}
-
-	\begin{sffamily}
-		\huge \bfseries
-		\makeatletter
-		\@title
-		\makeatother
-		\\
-	\end{sffamily}
-
-	\vspace*{1cm}
-
-	\begin{otherlanguage*}{ngerman}
-
-		\vspace*{3cm}
-
-		von\\[0.75em]
-		{
-		\large
-		\textbf{\autor}\quad Matrikel-Nr. \matrikelnr\\
-
-		\vspace*{2cm}
-		\makeatletter
-		\@date
-		\makeatother
-		}
-
-		{
-		\vspace*{3cm}
-		\centering
-		\large
-		\makeatletter
-		{\profA}\\
-		{\profB}
-		\makeatother
-		}
-
-		\vfill
-	\end{otherlanguage*}
-\end{titlepage}
+			{
+				\auditor\\
+			}
+		\end{tabbing}
+	\end{flushleft}}
+\setmainfont{TeX Gyre Termes}
