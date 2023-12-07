@@ -1,45 +1,209 @@
-% \usepackage[utf8]{inputenc}
-\usepackage[ngerman]{babel}
-\usepackage{times}
-\usepackage[tuenc,no-math]{fontspec}
-\setlength\parindent{0pt}
-\setsansfont{texgyreheros}[
-  Scale=MatchLowercase,% or MatchUppercase
-  Extension=.otf,
-  UprightFont=*-regular,
-  ItalicFont=*-italic,
-  BoldFont=*-bold,
-  BoldItalicFont=*-bolditalic,
-]
+% Keine floats in andere Sections
+\usepackage[section]{placeins}
 
+% Weitere Pakete
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{fontspec}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{dirtree}
+\usepackage{subcaption}
+\usepackage{enumitem}
+
+% Booktabs Tabellen
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\DefTblrTemplate{contfoot-text}{normal}{Fortsetzung auf nächster Seite}
+\SetTblrTemplate{contfoot-text}{normal}
+\DefTblrTemplate{conthead-text}{normal}{}
+\SetTblrTemplate{conthead-text}{normal}
+
+% Um Captions in Tabellen zu deaktivieren 
+%\DefTblrTemplate{caption-tag}{default}{}
+%\DefTblrTemplate{caption-sep}{default}{}
+%\DefTblrTemplate{caption-text}{default}{}
+
+% Grafiken aus PNG Dateien einbinden
+\usepackage{graphicx}
+
+% Deutsche Sonderzeichen und Silbentrennung nutzen
+\usepackage[ngerman]{babel}
+\usepackage{blindtext}
+
+% Eurozeichen einbinden
+\usepackage[right]{eurosym}
+
+% Kopf- und Fußzeilen
+\usepackage[headsepline,autooneside=false]{scrlayer-scrpage}
+\clearpairofpagestyles
+
+% Schriftart 
+\usepackage{lmodern}
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Adventor}
+
+% Floatende Bilder ermöglichen
+\usepackage{floatflt}
+
+% tikz
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows,math}
+\usetikzlibrary{shapes.geometric,positioning}
+
+%% Schaltpläne nach europäischen Richtlinien
+\usepackage[european]{circuitikz}
+\tikzset{x=1mm,y=1mm}
+
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,},detect-all}
+
+% Bricht lange URLs "schön" um
+\usepackage[hyphens,obeyspaces,spaces]{url}
+
+% Paket für Textfarben
+\usepackage{xcolor}
+\definecolor{LightGray}{gray}{0.9}
+
+% Mathematische Symbole importieren
+\usepackage{amssymb}
+
+% Paket für Zeilenabstand
+\usepackage{setspace}
+
+% Für Bildbezeichner
+\usepackage{capt-of}
+
+% Für Stichwortverzeichnis
+\usepackage{makeidx}
+
+% Für if und while 
+\usepackage{etoolbox}
+
+% --------------------------------
+
+% Konfiguriere das Inhaltsverzeichnis
+\usepackage{tocbasic}
+\DeclareTOCStyleEntries[
+  raggedentrytext,
+  %numwidth=0pt, if numbers=noenddot is not set
+  numsep=1ex,
+  dynnumwidth,
+]{tocline}{chapter,section}
+\DeclareTOCStyleEntries[
+  linefill=\TOCLineLeaderFill,
+]{tocline}{section,subsection,subsubsection,paragraph,subparagraph}
+
+\newcommand*\tocentryformat[1]{{\rmfamily#1}}
+\RedeclareSectionCommands
+[tocentryformat=\tocentryformat,tocpagenumberformat=\tocentryformat]{subsection,subsubsection,paragraph,subparagraph}
+
+\newcommand*\tocentrysectionformat[1]{{\rmfamily\bfseries#1}}
+\RedeclareSectionCommands
+[tocentryformat=\tocentrysectionformat,tocpagenumberformat=\tocentrysectionformat]{section}
+
+\DeclareTOCStyleEntries[
+  pagenumberbox=\hbox,
+  dynnumwidth]{tocline}{chapter,section,subsection,subsubsection,paragraph,subparagraph,figure,table}
+
+% --------------------------------
+
+% Nummerierung inkl. Section
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+
+% Abkürzungsverzeichnis
+\usepackage[printonlyused, smaller, withpage]{acronym}
+
+% Erzeugt Inhaltsverzeichnis mit Querverweisen zu den Abschnitten (PDF Version)
+\usepackage[bookmarksnumbered,hyperfootnotes=false,hypertexnames=false]{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  filecolor=blue,
+  citecolor = black,
+  urlcolor=blue,
+}
+
+% Darf erst hier eingebunden werden! 
+\usepackage{subfiles}
 \usepackage{csquotes}
 
-% Hyperref wird mit der Option pdfencoding=auto importiert. Die Option
-% sorgt für einwandfreie Umlaute im Inhaltsverzeichnis.
-\usepackage[pdfencoding=auto,hidelinks]{hyperref}
-\usepackage{graphicx}
-\graphicspath{images/}
-\usepackage[left= 2.5cm,right = 2cm, bottom = 4 cm]{geometry}
+% Indexerstellung
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                 %                    
+%                   Definition Zitierstil                         %
+%                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Zitierung nach IEEE
 
 \usepackage[
-  automark,
-  autooneside=false,% <- needed if you want to use \leftmark and \rightmark in a onesided document
-  headsepline
-]{scrlayer-scrpage}
+  backend=biber,
+  style=ieee,
+  autocite=inline,
+]{biblatex}
+\addbibresource{reference.bib}
+
+% Zitierung nach APA
+
+%\usepackage[
+%backend=biber,
+%style=apa,
+%autocite=inline,
+%]{biblatex}
+%\addbibresource{reference.bib}
+
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+% --------------------------------
+
+% \usepackage[utf8]{inputenc}
+% \usepackage[ngerman]{babel}
+% \usepackage{times}
+% % \usepackage[tuenc,no-math]{fontspec}
+% \setlength\parindent{0pt}
+% \setsansfont{texgyreheros}[
+%   Scale=MatchLowercase,% or MatchUppercase
+%   Extension=.otf,
+%   UprightFont=*-regular,
+%   ItalicFont=*-italic,
+%   BoldFont=*-bold,
+%   BoldItalicFont=*-bolditalic,
+% ]
+
+% \usepackage{csquotes}
+
+% % Hyperref wird mit der Option pdfencoding=auto importiert. Die Option
+% % sorgt für einwandfreie Umlaute im Inhaltsverzeichnis.
+% % \usepackage[pdfencoding=auto,hidelinks]{hyperref}
+
+% \graphicspath{images/}
+% \usepackage[left= 2.5cm,right = 2cm, bottom = 4 cm]{geometry}
+
+% % \usepackage[
+% %   automark,
+% %   autooneside=false,% <- needed if you want to use \leftmark and \rightmark in a onesided document
+% %   headsepline
+% % ]{scrlayer-scrpage}
 
 
-% Kopf- und Fußzeilen ändern
+% % Kopf- und Fußzeilen ändern
 
-\clearpairofpagestyles
-\ihead{\leftmark}
-\cfoot*{Seite \pagemark}
-\renewcommand*\chapterpagestyle{scrheadings}%
+% % \clearpairofpagestyles
+% % \ihead{\leftmark}
+% % \cfoot*{Seite \pagemark}
+% % \renewcommand*\chapterpagestyle{scrheadings}%
 
 
-\newcommand{\lorem}{Lorem exercitation sunt pariatur incididunt dolor nulla irure deserunt irure elit. Ut voluptate adipisicing incididunt proident laboris tempor excepteur magna sint. Velit sunt esse non minim aliqua aute eiusmod minim. Laboris eu aliqua tempor laborum. Aute cillum dolore veniam exercitation eu reprehenderit reprehenderit enim et. Aliquip culpa do commodo laboris deserunt tempor consectetur incididunt. Aliqua id esse ipsum dolor non reprehenderit cupidatat ea do pariatur occaecat non.}
+% \newcommand{\lorem}{Lorem exercitation sunt pariatur incididunt dolor nulla irure deserunt irure elit. Ut voluptate adipisicing incididunt proident laboris tempor excepteur magna sint. Velit sunt esse non minim aliqua aute eiusmod minim. Laboris eu aliqua tempor laborum. Aute cillum dolore veniam exercitation eu reprehenderit reprehenderit enim et. Aliquip culpa do commodo laboris deserunt tempor consectetur incididunt. Aliqua id esse ipsum dolor non reprehenderit cupidatat ea do pariatur occaecat non.}
 
-\title{Entwicklung einer Server-Client Aufgabenmanagement Anwendung}
-\newcommand{\autor}{Siani Lucien}
-\newcommand{\matrikelnr}{36045}
-\newcommand{\profA}{Prof. Dr. Oliver Radfelder}
-\newcommand{\profB}{Prof. Dr. Karin Vosseberg}
+% \title{Entwicklung einer Server-Client Aufgabenmanagement Anwendung}
+% \newcommand{\autor}{Siani Lucien}
+% \newcommand{\matrikelnr}{36045}
+% \newcommand{\profA}{Prof. Dr. Oliver Radfelder}
+% \newcommand{\profB}{Prof. Dr. Karin Vosseberg}
