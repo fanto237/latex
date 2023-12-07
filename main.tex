@@ -1,5 +1,5 @@
 %Dokumentklasse
-\documentclass[a4paper,12pt]{scrreprt}
+\documentclass[a4paper,12pt,parskip=half,headsepline,DIV=12,numbers=noenddot]{scrartcl}
 
 % Loading all packages and configuration present in the preamble file
 \usepackage{preamble}
@@ -7,30 +7,98 @@
 % ======= BEGIN DES DOKUMENTS =======
 \begin{document}
 
-\selectlanguage{ngerman}
+% Definition Header Sections sollen in der Kopfzeile stehen; Kopfzeile mit Unterstrich
+\automark[subsection]{section}
+\KOMAoptions{headsepline=true}
+%\ihead{Kopfzeile innen}
+%\chead{Kopfzeile außen}
+\ohead{\headmark}
 
-% % Titelseite  
+% Definition footer \pagemark steht für Seitennummer
+%\ifoot{Fußzeile innen}
+%\cfoot{Fußzeile Mitte}
+\ofoot{\pagemark}
+
+% % ------------------ Titelseite ------------------
 \input{titel.tex}
 
+\newpage
 
-% % Inhaltsverzeichnis  
+% Singlespacing (Zeilenabstand) (Default)
+\singlespacing
+\normalsize
+
+% Abstract falls gewünscht
+%\thispagestyle{empty}
+%\input{abstract}
+%\newpage
+
+% Inhaltsverzeichnis anzeigen
+\pagestyle{empty}
 \tableofcontents
+\newpage
+\pagestyle{headings}
 
-% % Verzeichnis aller Bilder 
-\listoffigures
+% Header für den Inhalt 
+\KOMAoptions{headsepline=true}
+\ohead{\headmark}
 
-% % Verzeichnis aller Tabellen 
-\listoftables
+% % ------------------ Inhalt des Dokuments ------------------
 
 
-% % Layout des Dokuments 
 \input{layout.tex}
+\newpage
 
-%Literaturverzeichnis 
-\bibliographystyle{unsrtdin}
-\bibliography{reference}
 
+% % ------------------ Verzeichnisse ------------------
+% Literaturverzeichnis anzeigen
+\ohead{Literaturverzeichnis} % Korrektur für Header 
+\phantomsection
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\renewcommand\refname{Literaturverzeichnis}
+\printbibliography
+\newpage
+
+% Abbildungsverzeichnis anzeigen
+\ohead{\headmark}
+\listoffigures
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\newpage
+
+
+% Tabellenverzeichnis anzeigen
+\listoftables
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+\newpage
+
+% Listingverzeichnis anzeigen
+% \renewcommand{\listlistingname}{Listingverzeichnis}
+% \listoflistings 
+% \addcontentsline{toc}{section}{Listingverzeichnis}
+% \newpage
+
+
+% Abkürzungsverzeichnis anzeigen
+%\ohead{Abkürzungsverzeichnis} % Korrektur für Header 
+%\section*{Abkürzungsverzeichnis}
+%\input{src/basic_structure/abkuerzungen.tex}
+%\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+%\newpage
+
+% Selbstständigkeits Erklärung
+\phantomsection
+\addcontentsline{toc}{section}{Selbstständigkeitserklärung}
+
+% Header für Erklärung
+\ohead{Selbstständigkeitserklärung}
+
+% Input Erklärung
+\input{erklaerung.tex}
 
 % ======= ENDE DES DOKUMENTS =======
+% Leere Abschlussseite
+%\newpage
+%\thispagestyle{empty} % erzeugt Seite ohne Kopf- / Fusszeile
+%\mbox{}
 
 \end{document}
