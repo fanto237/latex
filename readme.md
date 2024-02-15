@@ -1,7 +1,7 @@
 # Latex template for Essay and Thesis
 
-This project is a fork of [Fabian Lignitz
-]([https://](https://gitlab.informatik.hs-bremerhaven.de/flignitz/latex_vorlagen))'s latex template, which i modified to suit my needs.
+This project is a fork of [Fabian Lignitz's
+](https://gitlab.informatik.hs-bremerhaven.de/flignitz/latex_vorlagen) latex template, which i modified to suit my needs.
 It can be used to write essays as well as thesis such as Bachelor or Master thesis.
 ## Table of Contents
 - [Latex template for Essay and Thesis](#latex-template-for-essay-and-thesis)
