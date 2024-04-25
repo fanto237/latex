@@ -48,7 +48,7 @@
 \newpage
 \pagestyle{headings}
 
-% Header für den Inhalt 
+% Header für den Inhalt
 \KOMAoptions{headsepline=true}
 \ohead{\headmark}
 
@@ -61,7 +61,7 @@
 
 % % ------------------ Verzeichnisse ------------------
 % Literaturverzeichnis anzeigen
-\ohead{Literaturverzeichnis} % Korrektur für Header 
+\ohead{Literaturverzeichnis} % Korrektur für Header
 \phantomsection
 \addcontentsline{toc}{section}{Literaturverzeichnis}
 \renewcommand\refname{Literaturverzeichnis}
@@ -80,19 +80,62 @@
 \addcontentsline{toc}{section}{Tabellenverzeichnis}
 \newpage
 
-% Listingverzeichnis anzeigen
-% \renewcommand{\listlistingname}{Listingverzeichnis}
-% \listoflistings 
-% \addcontentsline{toc}{section}{Listingverzeichnis}
-% \newpage
+Listingverzeichnis anzeigen
+\renewcommand{\listlistingname}{Listingverzeichnis}
+\listoflistings
+\addcontentsline{toc}{section}{Listingverzeichnis}
+\newpage
 
 
-% Abkürzungsverzeichnis anzeigen
-%\ohead{Abkürzungsverzeichnis} % Korrektur für Header 
-%\section*{Abkürzungsverzeichnis}
-%\input{src/basic_structure/abkuerzungen.tex}
-%\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
-%\newpage
+Abkürzungsverzeichnis anzeigen
+\ohead{Abkürzungsverzeichnis} % Korrektur für Header
+\section*{Abkürzungsverzeichnis}
+\input{./contents/abkuerzungen.tex}
+\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+\newpage
+
+% Kein Header für Anhang (Deckblatt)
+\KOMAoptions{headsepline=false}
+\ohead{}
+
+% ------------------ Anhang ------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      Deckblatt Anhang         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\addcontentsline{toc}{section}{Anhang}
+\vspace*{\fill}
+\begin{center}
+  \doublespacing
+  \line(1,0){445}\\
+  \textbf{\Huge{Anhang}}\\
+  \line(1,0){445}
+  \singlespacing
+  \begin{verbatim}
+
+    \end{verbatim}
+\end{center}
+\vspace*{\fill}
+\newpage
+
+% Anhang römisch
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Roman{subsection}}
+\setcounter{section}{0}
+\counterwithin{table}{subsection}
+\counterwithin{figure}{subsection}
+\counterwithin{listing}{subsection}
+
+% Header Anhang (Inhalt)
+\KOMAoptions{headsepline=true}
+\ohead{\headmark}
+\automark{subsection}
+
+% Input Anhang
+% \input{src/anhang/anhang.tex}
+\newpage
+
+%------------------ Selbstständigkeitserklärung ------------------
 
 % Selbstständigkeits Erklärung
 \phantomsection
@@ -102,7 +145,7 @@
 \ohead{Selbstständigkeitserklärung}
 
 % Input Erklärung
-\input{erklaerung.tex}
+\input{./contents/erklaerung.tex}
 
 % ======= ENDE DES DOKUMENTS =======
 % Leere Abschlussseite
