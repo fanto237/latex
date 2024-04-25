@@ -107,42 +107,48 @@
   dynnumwidth]{tocline}{chapter,section,subsection,subsubsection,paragraph,subparagraph,figure,table}
 
 % Für schönere Listings
-\usepackage[outputdir=log, newfloat,]{minted}
-\setminted{
-  frame=lines,
-  framesep=2mm,
-  baselinestretch=1.2,
-  bgcolor=LightGray,
-  fontsize=\footnotesize,
-  linenos,
+% for matrix stuffs
+\usepackage{amsmath}
+
+% for codes
+\usepackage{scrhack}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Quellcode}
+\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
   breaklines=true,
-  breakanywhere=true,
-  autogobble,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
   tabsize=2
 }
-\setmintedinline{}
 
-% Keine Floats bei Listings
-\newenvironment{code}[2]
-{\captionsetup{type=listing}
-  \providecommand{\captiontitle}{#1}
-  \providecommand{\labeltitle}{#2}
-  \vspace*{0.3cm}
-}
-{
-  \vspace*{-0.8cm}
-  \caption{\captiontitle}
-  \label{\labeltitle}
-  \vspace*{0.35cm}
-}
-\SetupFloatingEnvironment{listing}{}
+\usepackage{float}
+\lstset{style=mystyle}
 
 
 % Nummerierung inkl. Section
-\usepackage{chngcntr}
-\counterwithin{table}{section}
-\counterwithin{figure}{section}
-\counterwithin{listing}{section}
+% \usepackage{chngcntr}
+% \counterwithin{table}{section}
+% \counterwithin{figure}{section}
+% \counterwithin{listing}{section}
 
 % Abkürzungsverzeichnis
 \usepackage[printonlyused, smaller, withpage]{acronym}
