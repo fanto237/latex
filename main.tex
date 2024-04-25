@@ -80,14 +80,13 @@
 \addcontentsline{toc}{section}{Tabellenverzeichnis}
 \newpage
 
-Listingverzeichnis anzeigen
-\renewcommand{\listlistingname}{Listingverzeichnis}
-\listoflistings
-\addcontentsline{toc}{section}{Listingverzeichnis}
+%Listingverzeichnis anzeigen
+\lstlistoflistings
+\addcontentsline{toc}{section}{Quellcodeverzeichnis}
 \newpage
 
 
-Abkürzungsverzeichnis anzeigen
+% Abkürzungsverzeichnis anzeigen
 \ohead{Abkürzungsverzeichnis} % Korrektur für Header
 \section*{Abkürzungsverzeichnis}
 \input{./contents/abkuerzungen.tex}
@@ -112,28 +111,27 @@ Abkürzungsverzeichnis anzeigen
   \line(1,0){445}
   \singlespacing
   \begin{verbatim}
-
     \end{verbatim}
 \end{center}
 \vspace*{\fill}
 \newpage
 
-% Anhang römisch
+% % Anhang römisch
 \renewcommand{\thesection}{\Roman{section}}
 \renewcommand{\thesubsection}{\Roman{subsection}}
 \setcounter{section}{0}
-\counterwithin{table}{subsection}
-\counterwithin{figure}{subsection}
-\counterwithin{listing}{subsection}
+% \counterwithin{table}{subsection}
+% \counterwithin{figure}{subsection}
+% \counterwithin{listing}{subsection}
 
-% Header Anhang (Inhalt)
-\KOMAoptions{headsepline=true}
-\ohead{\headmark}
-\automark{subsection}
+% % Header Anhang (Inhalt)
+% \KOMAoptions{headsepline=true}
+% \ohead{\headmark}
+% \automark{subsection}
 
-% Input Anhang
-% \input{src/anhang/anhang.tex}
-\newpage
+% % Input Anhang
+% % \input{./contents/anhang.tex}
+% \newpage
 
 %------------------ Selbstständigkeitserklärung ------------------
 
