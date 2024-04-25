@@ -19,7 +19,7 @@
 \DefTblrTemplate{conthead-text}{normal}{}
 \SetTblrTemplate{conthead-text}{normal}
 
-% Um Captions in Tabellen zu deaktivieren 
+% Um Captions in Tabellen zu deaktivieren
 %\DefTblrTemplate{caption-tag}{default}{}
 %\DefTblrTemplate{caption-sep}{default}{}
 %\DefTblrTemplate{caption-text}{default}{}
@@ -38,7 +38,7 @@
 \usepackage[headsepline,autooneside=false]{scrlayer-scrpage}
 \clearpairofpagestyles
 
-% Schriftart 
+% Schriftart
 \usepackage{lmodern}
 \setmainfont{TeX Gyre Termes}
 \setsansfont{TeX Gyre Adventor}
@@ -77,7 +77,7 @@
 % Für Stichwortverzeichnis
 \usepackage{makeidx}
 
-% Für if und while 
+% Für if und while
 \usepackage{etoolbox}
 
 % --------------------------------
@@ -106,12 +106,43 @@
   pagenumberbox=\hbox,
   dynnumwidth]{tocline}{chapter,section,subsection,subsubsection,paragraph,subparagraph,figure,table}
 
-% --------------------------------
+% Für schönere Listings
+\usepackage[outputdir=log, newfloat,]{minted}
+\setminted{
+  frame=lines,
+  framesep=2mm,
+  baselinestretch=1.2,
+  bgcolor=LightGray,
+  fontsize=\footnotesize,
+  linenos,
+  breaklines=true,
+  breakanywhere=true,
+  autogobble,
+  tabsize=2
+}
+\setmintedinline{}
+
+% Keine Floats bei Listings
+\newenvironment{code}[2]
+{\captionsetup{type=listing}
+  \providecommand{\captiontitle}{#1}
+  \providecommand{\labeltitle}{#2}
+  \vspace*{0.3cm}
+}
+{
+  \vspace*{-0.8cm}
+  \caption{\captiontitle}
+  \label{\labeltitle}
+  \vspace*{0.35cm}
+}
+\SetupFloatingEnvironment{listing}{}
+
 
 % Nummerierung inkl. Section
 \usepackage{chngcntr}
 \counterwithin{table}{section}
 \counterwithin{figure}{section}
+\counterwithin{listing}{section}
 
 % Abkürzungsverzeichnis
 \usepackage[printonlyused, smaller, withpage]{acronym}
@@ -126,7 +157,7 @@
   urlcolor=blue,
 }
 
-% Darf erst hier eingebunden werden! 
+% Darf erst hier eingebunden werden!
 \usepackage{subfiles}
 \usepackage{csquotes}
 
@@ -134,7 +165,7 @@
 \makeindex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                 %                    
+%                                                                 %
 %                   Definition Zitierstil                         %
 %                                                                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,51 +190,3 @@
 
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
-
-% --------------------------------
-
-% \usepackage[utf8]{inputenc}
-% \usepackage[ngerman]{babel}
-% \usepackage{times}
-% % \usepackage[tuenc,no-math]{fontspec}
-% \setlength\parindent{0pt}
-% \setsansfont{texgyreheros}[
-%   Scale=MatchLowercase,% or MatchUppercase
-%   Extension=.otf,
-%   UprightFont=*-regular,
-%   ItalicFont=*-italic,
-%   BoldFont=*-bold,
-%   BoldItalicFont=*-bolditalic,
-% ]
-
-% \usepackage{csquotes}
-
-% % Hyperref wird mit der Option pdfencoding=auto importiert. Die Option
-% % sorgt für einwandfreie Umlaute im Inhaltsverzeichnis.
-% % \usepackage[pdfencoding=auto,hidelinks]{hyperref}
-
-% \graphicspath{images/}
-% \usepackage[left= 2.5cm,right = 2cm, bottom = 4 cm]{geometry}
-
-% % \usepackage[
-% %   automark,
-% %   autooneside=false,% <- needed if you want to use \leftmark and \rightmark in a onesided document
-% %   headsepline
-% % ]{scrlayer-scrpage}
-
-
-% % Kopf- und Fußzeilen ändern
-
-% % \clearpairofpagestyles
-% % \ihead{\leftmark}
-% % \cfoot*{Seite \pagemark}
-% % \renewcommand*\chapterpagestyle{scrheadings}%
-
-
-% \newcommand{\lorem}{Lorem exercitation sunt pariatur incididunt dolor nulla irure deserunt irure elit. Ut voluptate adipisicing incididunt proident laboris tempor excepteur magna sint. Velit sunt esse non minim aliqua aute eiusmod minim. Laboris eu aliqua tempor laborum. Aute cillum dolore veniam exercitation eu reprehenderit reprehenderit enim et. Aliquip culpa do commodo laboris deserunt tempor consectetur incididunt. Aliqua id esse ipsum dolor non reprehenderit cupidatat ea do pariatur occaecat non.}
-
-% \title{Entwicklung einer Server-Client Aufgabenmanagement Anwendung}
-% \newcommand{\autor}{Siani Lucien}
-% \newcommand{\matrikelnr}{36045}
-% \newcommand{\profA}{Prof. Dr. Oliver Radfelder}
-% \newcommand{\profB}{Prof. Dr. Karin Vosseberg}
