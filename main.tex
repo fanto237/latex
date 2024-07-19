@@ -38,9 +38,9 @@
 \normalsize
 
 % Abstract falls gewünscht
-%\thispagestyle{empty}
-%\input{abstract}
-%\newpage
+% \thispagestyle{empty}
+% \input{./contents/abstract}
+% \newpage
 
 % Inhaltsverzeichnis anzeigen
 \pagestyle{empty}
@@ -55,7 +55,8 @@
 % % ------------------ Inhalt des Dokuments ------------------
 
 
-\input{layout.tex}
+
+\input{layout}
 \newpage
 
 
@@ -65,7 +66,7 @@
 \phantomsection
 \addcontentsline{toc}{section}{Literaturverzeichnis}
 \renewcommand\refname{Literaturverzeichnis}
-\printbibliography
+% \printbibliography
 \newpage
 
 % Abbildungsverzeichnis anzeigen
@@ -89,7 +90,7 @@
 % Abkürzungsverzeichnis anzeigen
 \ohead{Abkürzungsverzeichnis} % Korrektur für Header
 \section*{Abkürzungsverzeichnis}
-\input{./contents/abkuerzungen.tex}
+\input{./contents/abkuerzungen}
 \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
 \newpage
 
@@ -120,18 +121,18 @@
 \renewcommand{\thesection}{\Roman{section}}
 \renewcommand{\thesubsection}{\Roman{subsection}}
 \setcounter{section}{0}
-% \counterwithin{table}{subsection}
-% \counterwithin{figure}{subsection}
+\counterwithin{table}{subsection}
+\counterwithin{figure}{subsection}
 % \counterwithin{listing}{subsection}
 
 % % Header Anhang (Inhalt)
-% \KOMAoptions{headsepline=true}
-% \ohead{\headmark}
-% \automark{subsection}
+\KOMAoptions{headsepline=true}
+\ohead{\headmark}
+\automark{subsection}
 
 % % Input Anhang
-% % \input{./contents/anhang.tex}
-% \newpage
+\input{./contents/anhang}
+\newpage
 
 %------------------ Selbstständigkeitserklärung ------------------
 
@@ -143,12 +144,12 @@
 \ohead{Selbstständigkeitserklärung}
 
 % Input Erklärung
-\input{./contents/erklaerung.tex}
+\input{./contents/erklaerung}
 
 % ======= ENDE DES DOKUMENTS =======
 % Leere Abschlussseite
-%\newpage
-%\thispagestyle{empty} % erzeugt Seite ohne Kopf- / Fusszeile
-%\mbox{}
+\newpage
+\thispagestyle{empty} % erzeugt Seite ohne Kopf- / Fusszeile
+\mbox{}
 
 \end{document}
