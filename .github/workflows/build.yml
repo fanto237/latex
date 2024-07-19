@@ -1,0 +1,25 @@
+name: Latex Build
+
+on:
+  push:
+    branches:
+      - release
+  pull_request:
+    branches:
+      - release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get source code
+        uses: actions/checkout@v4
+      - name: Install LaTeX
+        run: sudo apt-get install texlive-full
+      - name: Build LaTeX
+        run: latexmk -pdf -lualatex -shell-escape -interaction=nonstopmode -f -outdir=logs main.tex
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: main.pdf
+          path: ./logs/main.pdf
